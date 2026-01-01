@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Redirect</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Responsive design */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    @media (min-width: 480px) {
+      .form {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      input[type="text"] {
+        flex: 4;
+      }
+
+      button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Redirect to URL</h1>
+    <form class="form" onsubmit="redirectToURL(event)">
+      <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://google.com)" required />
+      <button type="submit">Go</button>
+    </form>
+  </div>
+
+  <script>
+    function redirectToURL(event) {
+      event.preventDefault(); // Prevent form submission
+      const urlInput = document.getElementById('urlInput').value.trim();
+
+      // Add https:// if no protocol is provided
+      const url = urlInput.startsWith('http://') || urlInput.startsWith('https://') 
+        ? urlInput 
+        : `https://${urlInput}`;
+      
+      window.location.href = url; // Redirect to the entered URL
+    }
+  </script>
+</body>
+</html>
